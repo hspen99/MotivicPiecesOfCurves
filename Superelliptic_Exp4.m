@@ -193,7 +193,7 @@ BPM:=KMatrixSpace(CC,3,6)!S`BigPeriodMatrix;
 SM:= MCC!SymplecticBasis(S`IntersectionMatrix);
 
 //period matrix computed by Molin--Neurohr after undoing change to Symplectic basis 
-BMat:=BPM*SM^(-1);
+BMat:=BPM*Transpose(SM)^(-1);
 
 BMat2:=MCC![[BMat[1][ii] : ii in [1..6]],[ComplexConjugate(BMat[1][ii]) : ii in [1..6]],[BMat[2][ii] : ii in [1..6]],
 [ComplexConjugate(BMat[2][ii]) : ii in [1..6]],[BMat[3][ii] : ii in [1..6]],[ComplexConjugate(BMat[3][ii]) : ii in [1..6]]];
@@ -201,7 +201,7 @@ rows:=MCC![0,0,1,0,0,0, 0,0,0,0,1,0, 0,0,0,0,0,0, 0,0,0,0,0,0, 0,0,0,0,0,0, 0,0,
 penulti_mat:=rows*BMat2;
 
 // this is the matrix as in (5.7)
-final_mat:=KMatrixSpace(CC,2,2)![[penulti_mat[ii][jj] : jj in {1,3}] : ii in [1..2]];
+final_mat:=KMatrixSpace(CC,2,2)![[penulti_mat[ii][jj] : jj in {1,4}] : ii in [1..2]];
 per:=Determinant(final_mat);
 
 // Now spit out something that should visibly be in Q(i)!
