@@ -195,7 +195,7 @@ BPM:=KMatrixSpace(CC,3,6)!S`BigPeriodMatrix;
 SM:= MCC!SymplecticBasis(S`IntersectionMatrix);
 
 //period matrix computed by Molin--Neurohr after undoing change to Symplectic basis 
-BMat:=BPM*SM^(-1);
+BMat:=BPM*Transpose(SM)^(-1);
 BMat2:=MCC![[BMat[1][ii] : ii in [1..6]],[ComplexConjugate(BMat[1][ii]) : ii in [1..6]],[BMat[2][ii] : ii in [1..6]],
 [ComplexConjugate(BMat[2][ii]) : ii in [1..6]],[BMat[3][ii] : ii in [1..6]],[ComplexConjugate(BMat[3][ii]) : ii in [1..6]]];
 
@@ -208,5 +208,5 @@ per:=Determinant(final_mat);
 C12:=ComplexField(12);
 //L-value over period:
 C12!Lval/per;
-// (zeta_3-1)/81:
-C12!(z-1)/81;
+// (zeta_3^2-1)/81:
+C12!(z^2-1)/81;
